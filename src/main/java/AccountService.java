@@ -11,7 +11,9 @@ public class AccountService {
         String transactionId = UUID.randomUUID().toString();
         boolean isSuccessful = false;
 
-        if(source == null || destination==null || amount <= 0){
+        if(source == null || destination == null) return false;
+
+        if(amount <= 0){
             Transaction tx = new Transaction(transactionId,source.getAccountId(), destination.getAccountId(), amount,false);
             logger.logTransaction(tx);
             return false;
