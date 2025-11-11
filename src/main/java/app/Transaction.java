@@ -1,3 +1,5 @@
+package app;
+
 public class Transaction {
     private final String transactionId;
     private final String sourceAccountId;

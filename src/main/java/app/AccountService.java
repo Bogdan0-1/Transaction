@@ -1,5 +1,10 @@
+package app;
+
+import org.springframework.stereotype.Service;
+
 import java.util.UUID;
 
+@Service
 public class AccountService {
     Logger logger;
 
@@ -7,7 +12,7 @@ public class AccountService {
         this.logger = logger;
     }
 
-    public boolean transferFunds(Account source,Account destination,double amount){
+    public synchronized boolean transferFunds(Account source,Account destination,double amount){
         String transactionId = UUID.randomUUID().toString();
         boolean isSuccessful = false;
 
@@ -33,7 +38,7 @@ public class AccountService {
         }
 
         Transaction tx = new Transaction(transactionId, source.getAccountId(), destination.getAccountId(), amount, isSuccessful);
-        logger.logTransaction(tx); // Інтеграція з Logger
+        logger.logTransaction(tx); // Інтеграція з app.Logger
         return isSuccessful;
     }
 

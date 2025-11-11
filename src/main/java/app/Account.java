@@ -1,3 +1,5 @@
+package app;
+
 public class Account {
     private String accountId;
     private double balance;
@@ -21,13 +23,13 @@ public class Account {
         return isActive;
     }
 
-    public void deposit(double amount){
+    public synchronized void deposit(double amount){
         if(amount>0){
             this.balance += amount;
         }
     }
 
-    public boolean withdraw(double amount){
+    public synchronized boolean withdraw(double amount){
         if(isActive && amount > 0 && balance>=amount){
             this.balance -=amount;
             return true;
